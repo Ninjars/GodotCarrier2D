@@ -32,12 +32,9 @@ func updateFromInput(delta):
 	
 func updateInput():
 	inputRotation = 0
+	inputRotation -= Input.get_action_strength("rotate_left")
+	inputRotation += Input.get_action_strength("rotate_right")
+	
 	inputAcceleration = 0
-	if (Input.is_action_pressed("rotate_left")):
-		inputRotation -= 1
-	if (Input.is_action_pressed("rotate_right")):
-		inputRotation += 1
-	if (Input.is_action_pressed("decelerate")):
-		inputAcceleration -= 1
-	if (Input.is_action_pressed("accelerate")):
-		inputAcceleration += 1
+	inputAcceleration -= Input.get_action_strength("decelerate")
+	inputAcceleration += Input.get_action_strength("accelerate")
