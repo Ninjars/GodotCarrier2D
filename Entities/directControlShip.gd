@@ -20,7 +20,6 @@ func _process(delta):
 func _physics_process(delta):
 	updateFromInput(delta)
 	
-	print(str("current torque: ", currentTorque))
 	apply_torque(currentTorque)
 	apply_central_force(-get_transform().y * currentAcceleration)
 	
@@ -28,7 +27,6 @@ func updateFromInput(delta):
 	var targetTorque = inputRotation * torque
 	var targetAcceleration = inputAcceleration * acceleration
 	
-	print(str("updateFromInput() current: ", currentTorque, " target: ", targetTorque, " input: ", inputRotation))
 	currentTorque += (targetTorque - currentTorque) * turnResponse * delta
 	currentAcceleration += (targetAcceleration - currentAcceleration) * engineResponse * delta
 	
