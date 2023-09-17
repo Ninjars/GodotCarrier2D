@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddihr16gwwsd0"]
+
+[ext_resource type="Script" path="res://Entities/directControlShip.gd" id="1_3q5o1"]
+[ext_resource type="Texture2D" uid="uid://c6i7agi6xi3f4" path="res://Sprites/carrier1.png" id="1_fe73e"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_8xhc8"]
+points = PackedVector2Array(-30, -52, 3, -52, 8, -48, 8, -20, 24, -4, 24, 41, 16, 49, -25, 49, -33, 40, -33, -49)
+
+[node name="DirectControlShip" type="RigidBody2D"]
+inertia = 1.0
+gravity_scale = 0.0
+linear_damp_mode = 1
+linear_damp = 1.0
+angular_damp_mode = 1
+angular_damp = 20.0
+script = ExtResource("1_3q5o1")
+acceleration = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fe73e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_8xhc8")
