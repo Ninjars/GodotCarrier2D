@@ -4,4 +4,5 @@ extends NavigationObstacle2D
 
 func _ready():
 	vertices = shape.polygon
+	translate(shape.position)
 	

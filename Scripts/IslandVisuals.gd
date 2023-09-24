@@ -8,6 +8,9 @@ extends Node2D
 @export var outsideLineColor: Color = Color.DIM_GRAY
 @export var stepDistance: float = 10
 
+func _ready():
+	translate(shape.position)
+
 func _draw():
 	draw_colored_polygon(shape.polygon, fillColor)
 	
