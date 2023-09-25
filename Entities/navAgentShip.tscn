@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmes201cdbegd"]
+
+[ext_resource type="Script" path="res://Scripts/Ship.gd" id="1_w6mew"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m2m44"]
+radius = 30.0
+height = 110.88
+
+[node name="Ship" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_w6mew")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_m2m44")
+
+[node name="Shape" type="Polygon2D" parent="."]
+position = Vector2(2, 5)
+rotation = 1.5708
+polygon = PackedVector2Array(-30, -52, 5, -52, 8, -49, 8, -20, 24, -4, 24, 41, 16, 49, -25, 49, -33, 41, -33, -35, -33, -49)
+
+[node name="Fill" type="Polygon2D" parent="Shape"]
+color = Color(0.333333, 0.333333, 0.333333, 1)
+polygon = PackedVector2Array(-29, -50, 4, -50, 6, -48, 6, -19, 22, -3, 22, 40, 15, 47, -24, 47, -31, 40, -31, -48)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shape"]
+polygon = PackedVector2Array(6, 0, 17, 0, 17, 37, 6, 37)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Shape"]
+position = Vector2(-23, -45)
+polygon = PackedVector2Array(12, 0, 14, 0, 14, 44, 20, 44, 20, 46, 14, 46, 14, 67, 12, 67)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Shape"]
+position = Vector2(-20, 31)
+polygon = PackedVector2Array(-9, -7, 8, -7, 8, 8, -9, 8)
+
+[node name="Polygon2D4" type="Polygon2D" parent="Shape/Polygon2D3"]
+color = Color(0.333333, 0.333333, 0.333333, 1)
+polygon = PackedVector2Array(-7, -5, 6, -5, 6, 6, -7, 6)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 50.0

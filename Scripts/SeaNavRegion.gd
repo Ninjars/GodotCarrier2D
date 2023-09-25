@@ -9,15 +9,18 @@ var halfWidth = boundsWidth / 2
 var halfHeight = boundsHeight / 2
 
 func buildNavRegion(islands: Array[Island]):
-	navigation_polygon = NavigationPolygon.new()
-	navigation_polygon.add_outline(
+	var navPoly = get_navigation_polygon()
+	navPoly.add_outline(
 		PackedVector2Array([
-			Vector2(-halfWidth, halfHeight),
 			Vector2(-halfWidth, -halfHeight),
 			Vector2(halfWidth, -halfHeight),
 			Vector2(halfWidth, halfHeight),
+			Vector2(-halfWidth, halfHeight),
 		]))
-	parseIslandCollider(navigation_polygon, islands)
+	#parseIslandCollider(navPoly, islands)
+	navPoly.make_polygons_from_outlines()
+	set_navigation_polygon(navPoly)
+	enabled = true
 
 func parseIslandCollider(navPolygon: NavigationPolygon, islands: Array[Island]):
 	for island in islands:
