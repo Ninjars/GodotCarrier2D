@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmdhd7f8mmsxe"]
+[gd_scene load_steps=10 format=3 uid="uid://bmdhd7f8mmsxe"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_2suhm"]
 [ext_resource type="Script" path="res://Scripts/IslandVisuals.gd" id="1_78fk5"]
 [ext_resource type="Script" path="res://Scripts/MatchCollisionShape.gd" id="2_bp34e"]
 [ext_resource type="Script" path="res://Scripts/Island.gd" id="2_g3git"]
+[ext_resource type="PackedScene" uid="uid://cynjk2a34hyhf" path="res://Scripts/Controllers/Player.tscn" id="2_yalmk"]
 [ext_resource type="Script" path="res://Scripts/IslandNavigationObstacle2D.gd" id="3_k0mjg"]
 [ext_resource type="Script" path="res://Scripts/SeaNavRegion.gd" id="6_ghob7"]
 [ext_resource type="PackedScene" uid="uid://bmes201cdbegd" path="res://Entities/navAgentShip.tscn" id="8_clqqj"]
@@ -17,6 +18,11 @@
 [node name="GameManager" type="Node2D" parent="Logic" node_paths=PackedStringArray("seaNavRegion")]
 script = ExtResource("1_2suhm")
 seaNavRegion = NodePath("../../NavigationRegion2D")
+
+[node name="HumanPlayer" parent="Logic" node_paths=PackedStringArray("gameManager") instance=ExtResource("2_yalmk")]
+gameManager = NodePath("../GameManager")
+id = "Player1"
+color = Color(0.266667, 0.486275, 1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -50,7 +56,8 @@ shape = NodePath("../Shape")
 script = ExtResource("3_k0mjg")
 shape = NodePath("../Shape")
 
-[node name="Ship" parent="." instance=ExtResource("8_clqqj")]
+[node name="Ship" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("8_clqqj")]
 position = Vector2(-287, 0)
 rotationDegreesPerSecond = 180.845
 speed = 100.0
+controller = NodePath("../Logic/HumanPlayer")

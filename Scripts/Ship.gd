@@ -7,15 +7,16 @@ class_name Ship
 @export var headingAlignmentDegrees: float = 25
 
 @export var speed: float = 10
+@export var controller: PlayerController
 
-@onready var gameManager: GameManager = get_node("/root/Main")
 @onready var navAgent: NavigationAgent2D = $NavigationAgent2D
 
 var rotationRadsPerSecond = deg_to_rad(rotationDegreesPerSecond)
 var headingAlignmentRads = deg_to_rad(headingAlignmentDegrees)
 
-func _ready():
-	gameManager.registerShip(self)
+func _enter_tree():
+	if (controller != null):
+		controller.registerShip(self)
 	
 func _physics_process(delta):
 	if navAgent.is_navigation_finished():
