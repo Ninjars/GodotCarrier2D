@@ -8,10 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/SeaNavRegion.gd" id="6_ghob7"]
 [ext_resource type="PackedScene" uid="uid://bmes201cdbegd" path="res://Entities/navAgentShip.tscn" id="8_clqqj"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jv5g2"]
-vertices = PackedVector2Array(-1129, -644, 1146, -642, 1146, 630, -1151, 643)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1129, -644, 1146, -642, 1146, 630, -1151, 643)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jflkb"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("seaNavRegion")]
 script = ExtResource("1_2suhm")
@@ -21,10 +18,10 @@ seaNavRegion = NodePath("NavigationRegion2D")
 zoom = Vector2(0.5, 0.5)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_jv5g2")
+navigation_polygon = SubResource("NavigationPolygon_jflkb")
 script = ExtResource("6_ghob7")
-boundsWidth = 2000.0
-boundsHeight = 2000.0
+boundsWidth = 10000.0
+boundsHeight = 10000.0
 
 [node name="Island" type="StaticBody2D" parent="." node_paths=PackedStringArray("gameManager", "collisionShape")]
 position = Vector2(19.515, -80.935)
@@ -50,3 +47,6 @@ script = ExtResource("3_k0mjg")
 shape = NodePath("../Shape")
 
 [node name="Ship" parent="." instance=ExtResource("8_clqqj")]
+position = Vector2(-287, 0)
+rotationDegreesPerSecond = 180.845
+speed = 100.0
