@@ -10,9 +10,13 @@
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jflkb"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("seaNavRegion")]
+[node name="Main" type="Node2D"]
+
+[node name="Logic" type="Node" parent="."]
+
+[node name="GameManager" type="Node2D" parent="Logic" node_paths=PackedStringArray("seaNavRegion")]
 script = ExtResource("1_2suhm")
-seaNavRegion = NodePath("NavigationRegion2D")
+seaNavRegion = NodePath("../../NavigationRegion2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -26,7 +30,7 @@ boundsHeight = 10000.0
 [node name="Island" type="StaticBody2D" parent="." node_paths=PackedStringArray("gameManager", "collisionShape")]
 position = Vector2(19.515, -80.935)
 script = ExtResource("2_g3git")
-gameManager = NodePath("..")
+gameManager = NodePath("../Logic/GameManager")
 collisionShape = NodePath("Shape")
 
 [node name="Shape" type="Polygon2D" parent="Island"]
